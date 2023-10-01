@@ -7,6 +7,16 @@ import os
 import webbrowser
 import pyjokes
 
+# Create an initial dictionary of chatbot responses
+responses = {
+    "hello": ["Hello!", "Hi there!", "Hey!"],
+    "how are you": ["I'm good, thanks!", "I'm doing well.", "I'm fine."],
+    "date": ["get_today_date()"],
+    "time": ["get_current_time()"],
+    "joke": ["pyjokes.get_joke()"],
+    # Add more responses and features based on user input
+}
+
 def greet():
     hour = datetime.datetime.now().hour
     if 0 <= hour < 12:
@@ -23,27 +33,36 @@ def get_today_date():
     day = now.day
     return f'Today is {week_day}, {month} {day}.'
 
-def chatbot_response(input_text):
-    responses = {
-        "hello": ["Hello!", "Hi there!", "Hey!"],
-        "how are you": ["I'm good, thanks!", "I'm doing well.", "I'm fine."],
-        "date": [get_today_date()],
-        "time": [f"It is {datetime.datetime.now().strftime('%I:%M %p')}.", "The time is now {datetime.datetime.now().strftime('%I:%M %p')}."],
-        "joke": [pyjokes.get_joke()],
-        # Add more responses and features based on user input
-    }
+def get_current_time():
+    return f"It is {datetime.datetime.now().strftime('%I:%M %p')}."
 
+# Create a function to handle user input and chatbot responses
+def send_message():
+    user_input = user_entry.get()
+    user_entry.delete(0, tk.END)
+    chat_display.insert(tk.END, f"You: {user_input}\n")
+    
+    if user_input.lower() in ["exit", "quit"]:
+        chat_display.insert(tk.END, "Chatbot: Goodbye!\n")
+        chat_display.see(tk.END)
+    else:
+        response = chatbot_response(user_input)
+        chat_display.insert(tk.END, f"Chatbot: {response}\n")
+        chat_display.see(tk.END)
+
+def chatbot_response(input_text):
     input_text = input_text.lower()
+    
     if input_text in responses:
         return random.choice(responses[input_text])
-    elif "search" in input_text:
+    elif input_text.startswith("search"):
         search_query = input_text.replace("search", "").strip()
         webbrowser.open(f"https://www.google.com/search?q={search_query}")
         return f"I've opened a Google search for '{search_query}'."
-    elif "email" in input_text:
+    elif input_text.startswith("email"):
         # Implement email sending logic here
         return "Sorry, email functionality is not implemented in this version."
-    elif "open" in input_text:
+    elif input_text.startswith("open"):
         app_mapping = {
             "chrome": "Google Chrome",
             "word": "Microsoft Word",
@@ -59,20 +78,6 @@ def chatbot_response(input_text):
             return f"Sorry, I don't know how to open {app_name}."
     else:
         return "I'm not sure how to respond to that."
-
-# Create a function to handle user input and chatbot responses
-def send_message():
-    user_input = user_entry.get()
-    user_entry.delete(0, tk.END)
-    chat_display.insert(tk.END, f"You: {user_input}\n")
-    
-    if user_input.lower() in ["exit", "quit"]:
-        chat_display.insert(tk.END, "Chatbot: Goodbye!\n")
-        chat_display.see(tk.END)
-    else:
-        response = chatbot_response(user_input)
-        chat_display.insert(tk.END, f"Chatbot: {response}\n")
-        chat_display.see(tk.END)
 
 # Create the main GUI window
 window = tk.Tk()
