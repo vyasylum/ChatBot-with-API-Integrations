@@ -1,12 +1,10 @@
+import tkinter as tk
+from tkinter import scrolledtext
 import random
 import datetime
 import calendar
 import os
-import pytesseract
-import cv2
 import webbrowser
-import smtplib
-import wikipedia
 import pyjokes
 
 def greet():
@@ -62,11 +60,35 @@ def chatbot_response(input_text):
     else:
         return "I'm not sure how to respond to that."
 
-print("Chatbot: " + greet())
-while True:
-    user_input = input("You: ")
+# Create a function to handle user input and chatbot responses
+def send_message():
+    user_input = user_entry.get()
+    user_entry.delete(0, tk.END)
+    chat_display.insert(tk.END, f"You: {user_input}\n")
+    
     if user_input.lower() in ["exit", "quit"]:
-        print("Chatbot: Goodbye!")
-        break
-    response = chatbot_response(user_input)
-    print("Chatbot:", response)
+        chat_display.insert(tk.END, "Chatbot: Goodbye!\n")
+        chat_display.see(tk.END)
+    else:
+        response = chatbot_response(user_input)
+        chat_display.insert(tk.END, f"Chatbot: {response}\n")
+        chat_display.see(tk.END)
+
+# Create the main GUI window
+window = tk.Tk()
+window.title("Chatbot")
+
+chat_display = scrolledtext.ScrolledText(window, wrap=tk.WORD, width=40, height=15)
+chat_display.grid(row=0, column=0, padx=10, pady=10, columnspan=2)
+
+user_entry = tk.Entry(window, width=30)
+user_entry.grid(row=1, column=0, padx=10, pady=10)
+
+send_button = tk.Button(window, text="Send", width=10, command=send_message)
+send_button.grid(row=1, column=1, padx=10, pady=10)
+
+greeting = greet()
+chat_display.insert(tk.END, f"Chatbot: {greeting}\n")
+
+# Start the GUI main loop
+window.mainloop()
