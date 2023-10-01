@@ -6,14 +6,15 @@ import calendar
 import os
 import webbrowser
 import pyjokes
+import re
 
-# Create an initial dictionary of chatbot responses
+# Create a dictionary of chatbot responses and dynamic functions
 responses = {
-    "hello": ["Hello!", "Hi there!", "Hey!"],
-    "how are you": ["I'm good, thanks!", "I'm doing well.", "I'm fine."],
-    "date": ["get_today_date()"],
-    "time": ["get_current_time()"],
-    "joke": ["pyjokes.get_joke()"],
+    "hello": [lambda: random.choice(["Hello!", "Hi there!", "Hey!"])],
+    "how are you": [lambda: random.choice(["I'm good, thanks!", "I'm doing well.", "I'm fine."])],
+    "date": [lambda: get_today_date()],
+    "time": [lambda: get_current_time()],
+    "joke": [lambda: pyjokes.get_joke()],
     # Add more responses and features based on user input
 }
 
@@ -53,29 +54,17 @@ def send_message():
 def chatbot_response(input_text):
     input_text = input_text.lower()
     
-    if input_text in responses:
-        return random.choice(responses[input_text])
-    elif input_text.startswith("search"):
-        search_query = input_text.replace("search", "").strip()
-        webbrowser.open(f"https://www.google.com/search?q={search_query}")
-        return f"I've opened a Google search for '{search_query}'."
-    elif input_text.startswith("email"):
-        # Implement email sending logic here
-        return "Sorry, email functionality is not implemented in this version."
-    elif input_text.startswith("open"):
-        app_mapping = {
-            "chrome": "Google Chrome",
-            "word": "Microsoft Word",
-            "excel": "Microsoft Excel",
-            "vs code": "Visual Studio Code",
-            "brave": "Brave Browser",
-        }
-        app_name = input_text.split("open")[1].strip()
-        if app_name in app_mapping:
-            os.system(f"start {app_mapping[app_name]}")
-            return f"Opening {app_name}..."
-        else:
-            return f"Sorry, I don't know how to open {app_name}."
+    matched_keywords = []
+    
+    # Check for keywords in the user's input
+    for keyword in responses.keys():
+        if re.search(r'\b' + keyword + r'\b', input_text):
+            matched_keywords.append(keyword)
+    
+    if matched_keywords:
+        response_list = [response() for keyword in matched_keywords for response in responses[keyword]]
+        response_text = '\n'.join(response_list)
+        return response_text
     else:
         return "I'm not sure how to respond to that."
 
