@@ -48,7 +48,7 @@ def get_weather(city):
 
 Test Your Feature: Run the chatbot locally and test your new feature by asking the chatbot about it.
 
-Submit Your Contribution:
+## Submit Your Contribution:
 
 Commit your changes and push them to your forked repository.
 Create a pull request to the main repository. Provide a clear description of your contribution.
