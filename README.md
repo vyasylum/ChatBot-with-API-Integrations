@@ -36,15 +36,15 @@ Choose an API: Select an external API that you'd like to integrate into the chat
 **NOTE: These are a few examples, you can add way more!!**
 ## Create a New Function: Write a Python function that uses the chosen API to fetch data or perform a specific task. For example:
 
-```python
+```py
 def get_weather(city):
     # Your code to call the weather API and retrieve data
     # Return the weather information as a response
     return "The weather in {} is sunny today.".format(city)
-```python
+```
 
 
-Integrate the Function: Add your function to the chatbot_response function in main.py. Update the responses dictionary with a keyword that triggers your function.
+**Integrate the Function**: Add your function to the chatbot_response function in main.py. Update the responses dictionary with a keyword that triggers your function.
 
 Test Your Feature: Run the chatbot locally and test your new feature by asking the chatbot about it.
 
