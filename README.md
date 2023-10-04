@@ -21,12 +21,14 @@ To get started with contributing to the chatbot, follow these steps:
 ## Install dependencies 
 pip install -r requirements.txt
 
-## Add new features using an API(s)
+## Add New Features Using an API(s)
+
 Choose an API: Select an external API that you'd like to integrate into the chatbot. Here are some suggested APIs:
 
-[OpenWeatherMap API](https://openweathermap.org/api): Get real-time weather data.
-[News API](https://newsapi.org/): Retrieve the latest news headlines.
-[NASA API](https://api.nasa.gov/): Access space-related information and images.
-[NASA APOD API](https://apod.nasa.gov/apod/lib/about_apod.html): Display NASA's Astronomy Picture of the Day along with descriptions and explanations.
-[Music Lyrics API](https://lyricsovh.docs.apiary.io/): Retrieve song lyrics based on user queries or display lyrics when the chatbot encounters song-related topics.
+- [OpenWeatherMap API](https://openweathermap.org/api): Get real-time weather data.
+- [News API](https://newsapi.org/): Retrieve the latest news headlines.
+- [NASA API](https://api.nasa.gov/): Access space-related information and images.
+- [NASA APOD API](https://apod.nasa.gov/apod/lib/about_apod.html): Display NASA's Astronomy Picture of the Day along with descriptions and explanations.
+- [Music Lyrics API](https://lyricsovh.docs.apiary.io/): Retrieve song lyrics based on user queries or display lyrics when the chatbot encounters song-related topics.
+
 **NOTE: These are a few examples, you can add way more!!**
