@@ -19,11 +19,11 @@ To get started with contributing to the chatbot, follow these steps:
 
 
 ## Install dependencies 
-```bash
-   pip install -r requirements.txt
+    ```bash
+    pip install -r requirements.txt
 
 
-## Add New Features Using an API(s)
+##Add New Features Using an API(s)
 
 Choose an API: Select an external API that you'd like to integrate into the chatbot. Here are some suggested APIs:
 
