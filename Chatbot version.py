@@ -19,6 +19,7 @@ responses = {
     # Add more responses and features based on user input
 }
 
+#Define functions here, which can be called in responses
 def greet():
     hour = datetime.datetime.now().hour
     if 0 <= hour < 12:
