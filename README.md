@@ -19,7 +19,7 @@ To get started with contributing to the chatbot, follow these steps:
 
 
 ## Install dependencies 
-    ```bash
+    
     pip install -r requirements.txt
 
 
