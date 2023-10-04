@@ -40,11 +40,13 @@ Choose an API: Select an external API that you'd like to integrate into the chat
 def get_weather(city):
     # Your code to call the weather API and retrieve data
     # Return the weather information as a response
-    return "The weather in {} is sunny today.".format(city)
+    return "The weather in {} is sunny today.".format(city)```
 
-**Test Your Feature**: Run the chatbot locally and test your new feature by asking the chatbot about it.
+Integrate the Function: Add your function to the chatbot_response function in main.py. Update the responses dictionary with a keyword that triggers your function.
 
-**Submit Your Contribution**:
+Test Your Feature: Run the chatbot locally and test your new feature by asking the chatbot about it.
+
+Submit Your Contribution:
 
 Commit your changes and push them to your forked repository.
 Create a pull request to the main repository. Provide a clear description of your contribution.
