@@ -1,0 +1,8 @@
+tkinter
+random
+datetime
+calendar
+os
+webbrowser
+pyjokes
+re
