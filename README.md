@@ -23,7 +23,7 @@ To get started with contributing to the chatbot, follow these steps:
     pip install -r requirements.txt
 
 
-##Add New Features Using an API(s)
+## Add New Features Using an API(s)
 
 Choose an API: Select an external API that you'd like to integrate into the chatbot. Here are some suggested APIs:
 
@@ -34,3 +34,17 @@ Choose an API: Select an external API that you'd like to integrate into the chat
 - [Music Lyrics API](https://lyricsovh.docs.apiary.io/): Retrieve song lyrics based on user queries or display lyrics when the chatbot encounters song-related topics.
 
 **NOTE: These are a few examples, you can add way more!!**
+## Create a New Function: Write a Python function that uses the chosen API to fetch data or perform a specific task. For example:
+
+```python
+def get_weather(city):
+    # Your code to call the weather API and retrieve data
+    # Return the weather information as a response
+    return "The weather in {} is sunny today.".format(city)
+
+**Test Your Feature**: Run the chatbot locally and test your new feature by asking the chatbot about it.
+
+**Submit Your Contribution**:
+
+Commit your changes and push them to your forked repository.
+Create a pull request to the main repository. Provide a clear description of your contribution.
