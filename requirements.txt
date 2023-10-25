@@ -6,3 +6,5 @@ os
 webbrowser
 pyjokes
 re
+requests
+pillow
