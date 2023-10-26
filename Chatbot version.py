@@ -8,6 +8,7 @@ import os
 import webbrowser
 import pyjokes
 import re
+import requests
 
 # Create a dictionary of chatbot responses and dynamic functions
 responses = {
@@ -16,6 +17,7 @@ responses = {
     "date": [lambda: get_today_date()],
     "time": [lambda: get_current_time()],
     "joke": [lambda: pyjokes.get_joke()],
+    "news": [lambda: get_news()],
     # Add more responses and features based on user input
 }
 
@@ -52,6 +54,27 @@ def send_message():
         response = chatbot_response(user_input)
         chat_display.insert(tk.END, f"Chatbot: {response}\n")
         chat_display.see(tk.END)
+
+def get_news():
+    
+    api_key = 'ff71a7590a4d46cbb6e08e8b3c12f7c7'
+    url = f'https://newsapi.org/v2/top-headlines?country=US&apiKey={api_key}'  
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        news_data = response.json()
+        articles = news_data['articles']
+        if articles:
+            # Display the first news article's title and description
+            first_article = articles[0]
+            title = first_article['title']
+            description = first_article['description']
+            return f"Here's the latest news: {title}. {description}"
+        else:
+            return "I couldn't find any news at the moment."
+    else:
+        return "Sorry, I couldn't fetch the latest news."
+    
 
 def chatbot_response(input_text):
     input_text = input_text.lower()
