@@ -1,10 +1,4 @@
-tkinter
-random
-datetime
-calendar
-os
-webbrowser
+tk
 pyjokes
-re
 requests
-pillow
+Pillow
