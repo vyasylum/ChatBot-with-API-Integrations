@@ -19,8 +19,8 @@ responses = {
     "date": [lambda: get_today_date()],
     "time": [lambda: get_current_time()],
     "joke": [lambda: pyjokes.get_joke()],
-     "astronomy picture of the day": [lambda: get_apod()],
-     "apod": [lambda: get_apod()],
+    "astronomy picture of the day": [lambda: get_apod()],
+    "apod": [lambda: get_apod()],
     # Add more responses and features based on user input
 }
 
@@ -117,7 +117,7 @@ user_reply_fg_color = "black"
 send_button_color = "deepskyblue2"
 
 # Chat display with modified settings for chatbot and user
-chat_display = scrolledtext.ScrolledText(window, wrap=tk.WORD, width=60, height=20, font=font, bg=chatbot_bg_color, fg=chatbot_fg_color, padx=20,pady=20)
+chat_display = scrolledtext.ScrolledText(window, wrap=tk.WORD, width=60, height=16, font=font, bg=chatbot_bg_color, fg=chatbot_fg_color, padx=20,pady=20)
 chat_display.grid(row=0, column=0, padx=10, pady=10, columnspan=2)
 
 # User entry with Enter key binding and modified settings
