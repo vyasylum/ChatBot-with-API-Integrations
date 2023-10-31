@@ -11,6 +11,7 @@ import pyjokes
 import re
 import requests
 from PIL import Image, ImageTk
+import platform
 
 # Create a dictionary of chatbot responses and dynamic functions
 responses = {
@@ -19,9 +20,10 @@ responses = {
     "date": [lambda: get_today_date()],
     "time": [lambda: get_current_time()],
     "joke": [lambda: pyjokes.get_joke()],
-     "astronomy picture of the day": [lambda: get_apod()],
-     "apod": [lambda: get_apod()],
-     "news": [lambda: get_news()],
+    "system": [lambda: get_system_info()],
+    "astronomy picture of the day": [lambda: get_apod()],
+    "apod": [lambda: get_apod()],
+    "news": [lambda: get_news()],
     # Add more responses and features based on user input
 }
 
@@ -71,7 +73,12 @@ def get_apod():
         chat_display.insert(tk.END, f"Astronomy Picture of the Day:\n{description}\n{image_url}\n")
     else:
         return "Sorry, I couldn't fetch the Astronomy Picture of the Day at the moment."
-    
+
+def get_system_info():
+    machine = platform.machine()
+    system = platform.system()
+    return f'Your operating system is {system}, and your machine architecture is {machine}.'
+
 def display_image(image_url):
     try:
         image = Image.open(requests.get(image_url, stream=True).raw)
@@ -138,7 +145,7 @@ user_reply_fg_color = "black"
 send_button_color = "deepskyblue2"
 
 # Chat display with modified settings for chatbot and user
-chat_display = scrolledtext.ScrolledText(window, wrap=tk.WORD, width=60, height=20, font=font, bg=chatbot_bg_color, fg=chatbot_fg_color, padx=20,pady=20)
+chat_display = scrolledtext.ScrolledText(window, wrap=tk.WORD, width=60, height=16, font=font, bg=chatbot_bg_color, fg=chatbot_fg_color, padx=20,pady=20)
 chat_display.grid(row=0, column=0, padx=10, pady=10, columnspan=2)
 
 # User entry with Enter key binding and modified settings
