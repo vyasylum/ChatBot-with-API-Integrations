@@ -11,6 +11,7 @@ import pyjokes
 import re
 import requests
 from PIL import Image, ImageTk
+import platform
 
 # Create a dictionary of chatbot responses and dynamic functions
 responses = {
@@ -21,6 +22,7 @@ responses = {
     "joke": [lambda: pyjokes.get_joke()],
     "astronomy picture of the day": [lambda: get_apod()],
     "apod": [lambda: get_apod()],
+    "system": [lambda: get_system_info()],
     # Add more responses and features based on user input
 }
 
@@ -70,7 +72,12 @@ def get_apod():
         chat_display.insert(tk.END, f"Astronomy Picture of the Day:\n{description}\n{image_url}\n")
     else:
         return "Sorry, I couldn't fetch the Astronomy Picture of the Day at the moment."
-    
+
+def get_system_info():
+    machine = platform.machine()
+    system = platform.system()
+    return f'Your operating system is {system}, and your machine architecture is {machine}.'
+
 def display_image(image_url):
     try:
         image = Image.open(requests.get(image_url, stream=True).raw)
