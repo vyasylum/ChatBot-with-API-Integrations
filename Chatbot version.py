@@ -21,6 +21,7 @@ responses = {
     "joke": [lambda: pyjokes.get_joke()],
      "astronomy picture of the day": [lambda: get_apod()],
      "apod": [lambda: get_apod()],
+     "news": [lambda: get_news()],
     # Add more responses and features based on user input
 }
 
@@ -87,6 +88,26 @@ def display_image(image_url):
     except Exception as e:
         print(f"Error displaying image: {e}")
 
+def get_news():
+    
+    api_key = 'ff71a7590a4d46cbb6e08e8b3c12f7c7'
+    url = f'https://newsapi.org/v2/top-headlines?country=US&apiKey={api_key}'  
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        news_data = response.json()
+        articles = news_data['articles']
+        if articles:
+            # Display the first news article's title and description
+            first_article = articles[0]
+            title = first_article['title']
+            description = first_article['description']
+            return f"Here's the latest news: {title}. {description}"
+        else:
+            return "I couldn't find any news at the moment."
+    else:
+        return "Sorry, I couldn't fetch the latest news."
+    
 def chatbot_response(input_text):
     input_text = input_text.lower()
     
